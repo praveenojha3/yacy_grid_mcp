@@ -1,1 +1,1 @@
-web: bash /productiondeployment.sh run
+web: sh /heroku_start.sh
