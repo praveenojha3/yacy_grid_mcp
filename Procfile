@@ -1,1 +1,1 @@
-web: sh /bin/heroku_start.sh
+web: python bin/run_all.py
