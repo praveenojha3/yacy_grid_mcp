@@ -36,3 +36,6 @@ dependencies {
     compile group: 'org.elasticsearch.client', name: 'transport', version: '5.+'
     compile group: 'org.eclipse.jgit', name: 'org.eclipse.jgit', version: '4.10.0.201712302008-r'
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean

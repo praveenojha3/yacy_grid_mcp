@@ -1,1 +1,1 @@
-web: sh /heroku_start.sh
+web: sh /bin/heroku_start.sh
