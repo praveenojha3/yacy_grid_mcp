@@ -1,1 +1,1 @@
-web: python bin/runall.py
+web: gradle run

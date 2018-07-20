@@ -20,35 +20,23 @@ def mkapps():
     if not os.path.isdir(path_apphome + '/data/mcp-8100'): os.makedirs(path_apphome + '/data/mcp-8100')
     if not os.path.isdir(path_apphome + '/data/mcp-8100/apps'): os.makedirs(path_apphome + '/data/mcp-8100/apps')
 
-if not checkportopen(9200):
-    print "Elasticsearch is not running"
-    mkapps()
-    elasticversion = 'elasticsearch-5.6.5'
-    if not os.path.isfile(path_apphome + '/data/mcp-8100/apps/' + elasticversion + '.tar.gz'):
-        print('Downloading ' + elasticversion)
-        urllib.urlretrieve ('https://artifacts.elastic.co/downloads/elasticsearch/' + elasticversion + '.tar.gz', path_apphome + '/data/mcp-8100/apps/' + elasticversion + '.tar.gz')
-    if not os.path.isdir(path_apphome + '/data/mcp-8100/apps/elasticsearch'):
-        print('Decompressing' + elasticversion)
-        os.system('tar xfz ' + path_apphome + '/data/mcp-8100/apps/' + elasticversion + '.tar.gz -C ' + path_apphome + '/data/mcp-8100/apps/')
-        os.rename(path_apphome + '/data/mcp-8100/apps/' + elasticversion, path_apphome + '/data/mcp-8100/apps/elasticsearch')
-    # run elasticsearch
-    print('Running Elasticsearch')
-    os.chdir(path_apphome + '/data/mcp-8100/apps/elasticsearch/bin')
-    os.system('nohup ./elasticsearch &')
+# if not checkportopen(9200):
+#     print "Elasticsearch is not running"
+#     mkapps()
+#     elasticversion = 'elasticsearch-5.6.5'
+#     if not os.path.isfile(path_apphome + '/data/mcp-8100/apps/' + elasticversion + '.tar.gz'):
+#         print('Downloading ' + elasticversion)
+#         urllib.urlretrieve ('https://artifacts.elastic.co/downloads/elasticsearch/' + elasticversion + '.tar.gz', path_apphome + '/data/mcp-8100/apps/' + elasticversion + '.tar.gz')
+#     if not os.path.isdir(path_apphome + '/data/mcp-8100/apps/elasticsearch'):
+#         print('Decompressing' + elasticversion)
+#         os.system('tar xfz ' + path_apphome + '/data/mcp-8100/apps/' + elasticversion + '.tar.gz -C ' + path_apphome + '/data/mcp-8100/apps/')
+#         os.rename(path_apphome + '/data/mcp-8100/apps/' + elasticversion, path_apphome + '/data/mcp-8100/apps/elasticsearch')
+#     # run elasticsearch
+#     print('Running Elasticsearch')
+#     os.chdir(path_apphome + '/data/mcp-8100/apps/elasticsearch/bin')
+#     os.system('nohup ./elasticsearch &')
 
 os.chdir(path_apphome)
-
-if checkportopen(15672):
-    print "RabbitMQ is Running"
-    print "If you have configured it according to YaCy setup press N"
-    print "If you have not configured it according to YaCy setup or Do not know what to do press Y"
-    n=raw_input()
-    if(n=='Y' or n=='y'):
-        os.system('service rabbitmq-server stop')
-        
-if not checkportopen(15672):
-    print "rabbitmq is not running"
-    os.system('python bin/start_rabbitmq.py')
     
 #subprocess.call('bin/update_all.sh')
 
